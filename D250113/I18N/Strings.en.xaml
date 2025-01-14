@@ -1,0 +1,29 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:sys="clr-namespace:System;assembly=mscorlib">
+    <sys:String x:Key="WindowTitle">
+        WPF I18N Demo
+    </sys:String>
+    <sys:String x:Key="WelcomeMessage">
+        Welcome to this demo software
+    </sys:String>
+    <sys:String x:Key="EnglishButtonContent">
+        English
+    </sys:String>
+    <sys:String x:Key="ChineseButtonContent">
+        Chinese
+    </sys:String>
+    <sys:String x:Key="ShowMessageButtonContent">
+        Show Message
+    </sys:String>
+    <sys:String x:Key="MessageCaption">
+        Notice
+    </sys:String>
+    <sys:String x:Key="MessageContent">
+        This is a message from code behind.
+    </sys:String>
+    <sys:String x:Key="LogoText">
+        @scarletNnn
+    </sys:String>
+</ResourceDictionary>

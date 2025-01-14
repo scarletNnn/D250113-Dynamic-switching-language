@@ -1,0 +1,159 @@
+﻿<Window
+    x:Class="D250113.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:lang="clr-namespace:D250113.Resources"
+    xmlns:lex="http://wpflocalizeextension.codeplex.com"
+    xmlns:local="clr-namespace:D250113"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:myClassLibrary="clr-namespace:MyClassLibrary;assembly=MyClassLibrary"
+    xmlns:sys="clr-namespace:System;assembly=mscorlib"
+    Title="{lex:Loc WindowTitle}"
+    Width="800"
+    Height="450"
+    lex:LocalizeDictionary.DesignCulture="zh-CN"
+    lex:ResxLocalizationProvider.DefaultAssembly="D250113"
+    lex:ResxLocalizationProvider.DefaultDictionary="Lang"
+    mc:Ignorable="d">
+    <!--<DesignCulture 可以在设计时动态更改语言>-->
+    <!--<DefaultAssembly 程序集名称>-->
+    <!--<DefaultDictionary 资源字典名称>-->
+    <Window.Resources>
+        <Style TargetType="Button">
+            <Setter Property="Padding" Value="8,5" />
+            <Setter Property="FontSize" Value="18" />
+        </Style>
+
+        <ObjectDataProvider
+            x:Key="myEnum_DiagonalLift"
+            MethodName="GetValues"
+            ObjectType="{x:Type sys:Enum}">
+            <ObjectDataProvider.MethodParameters>
+                <x:Type TypeName="local:enum_DiagonaLift" />
+            </ObjectDataProvider.MethodParameters>
+        </ObjectDataProvider>
+    </Window.Resources>
+
+    <Window.DataContext>
+        <local:ViewModel />
+    </Window.DataContext>
+    <!--<Grid>
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+            <TextBlock FontSize="32" Text="{DynamicResource WelcomeMessage}" />
+            <StackPanel
+                Margin="0,16,0,0"
+                HorizontalAlignment="Center"
+                Orientation="Horizontal">
+                <Button
+                    Click="ChangeLanguage_Click"
+                    Content="{DynamicResource EnglishButtonContent}"
+                    Tag="en" />
+                <Separator Width="10" Opacity="0" />
+                <Button
+                    Click="ChangeLanguage_Click"
+                    Content="{DynamicResource ChineseButtonContent}"
+                    Tag="zh" />
+            </StackPanel>
+            <Button
+                Name="MessageButton"
+                Margin="0,16,0,0"
+                HorizontalAlignment="Center"
+                Click="ShowMessageButton_Click"
+                Content="{DynamicResource ShowMessageButtonContent}" />
+            <TextBlock
+                Margin="20"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Bottom"
+                FontSize="28"
+                Foreground="LightGray"
+                Text="{DynamicResource LogoText}" />
+        </StackPanel>
+    </Grid>-->
+
+    <!--<Grid>
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+            <TextBlock FontSize="32" Text="{x:Static lang:Lang.WelcomeMessage}" />
+            <StackPanel
+                Margin="0,16,0,0"
+                HorizontalAlignment="Center"
+                Orientation="Horizontal">
+                <Button
+                    Click="ChangeLanguage_Click"
+                    Content="{x:Static lang:Lang.EnglishButtonContent}"
+                    Tag="en" />
+                <Separator Width="10" Opacity="0" />
+                <Button
+                    Click="ChangeLanguage_Click"
+                    Content="{x:Static lang:Lang.ChineseButtonContent}"
+                    Tag="zh-CN" />
+            </StackPanel>
+            <Button
+                Name="MessageButton"
+                Margin="0,16,0,0"
+                HorizontalAlignment="Center"
+                Click="ShowMessageButton_Click"
+                Content="{x:Static lang:Lang.ShowMessageButtonContent}" />
+            <TextBlock
+                Margin="20"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Bottom"
+                FontSize="28"
+                Foreground="LightGray"
+                Text="{x:Static lang:Lang.LogoText}" />
+        </StackPanel>
+    </Grid>-->
+
+    <Grid>
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+            <TextBlock FontSize="32" Text="{lex:Loc WelcomeMessage}" />
+            <StackPanel
+                Margin="0,16,0,0"
+                HorizontalAlignment="Center"
+                Orientation="Horizontal">
+                <Button
+                    Command="{Binding Source={x:Static lex:LocalizeDictionary.Instance}, Path=SetCultureCommand}"
+                    CommandParameter="en"
+                    Content="{lex:Loc EnglishButtonContent}"
+                    Tag="en" />
+                <Separator Width="10" Opacity="0" />
+                <Button
+                    Command="{Binding Source={x:Static lex:LocalizeDictionary.Instance}, Path=SetCultureCommand}"
+                    CommandParameter="zh-CN"
+                    Content="{lex:Loc ChineseButtonContent}"
+                    Tag="zh-CN" />
+            </StackPanel>
+            <Button
+                Name="MessageButton"
+                Margin="0,16,0,0"
+                HorizontalAlignment="Center"
+                Click="ShowMessageButton_Click"
+                Content="{lex:Loc ShowMessageButtonContent}" />
+            <TextBlock
+                Margin="20"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Bottom"
+                FontSize="28"
+                Foreground="LightGray"
+                Text="{lex:Loc LogoText}" />
+            <!--<切换程序集和资源字典>-->
+            <TextBlock Text="{lex:Loc MyClassLibrary:Resource1:Message}" />
+            <!--<匹配资源字典里的 ControlName_PropertyName>-->
+            <Button
+                x:Name="MyButton"
+                Content="{lex:Loc}"
+                FontSize="{lex:Loc}"
+                ToolTip="{lex:Loc}" />
+            <ComboBox ItemsSource="{Binding Source={StaticResource myEnum_DiagonalLift}}" SelectedItem="{Binding Enum_DiagonaLift}">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <!--<TextBlock Text="{lex:Loc {Binding Converter={lex:PrependTypeConverter}}}" />-->
+                        <TextBlock Text="{lex:Loc {Binding}}" />
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+        </StackPanel>
+
+    </Grid>
+
+</Window>
