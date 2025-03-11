@@ -54,6 +54,8 @@ public partial class MainWindow : Window
     }
 }
 
+//怎么本地化枚举
+
 public enum enum_DiagonaLift : int
 {
     None = 0,
